@@ -1,0 +1,38 @@
+<div class="panel panel-primary">
+  <div class="panel-heading"><h1>Star Wars Filmography</h1></div>
+  <div class="panel-body">
+    <div class="row">
+      <div class="col-xs-6">
+        <label for="Characters">Characters:</label>
+        <select class="form-control" id="Characters" name="Characters" [(ngModel)]="selectedCharacterUrl" (ngModelChange)="onSelectedCharacterChange($event)">
+          <option *ngFor="let c of characters" [value]="c.url">{{c.name}}</option>
+        </select>
+      </div>
+    </div>
+    <div class="row" *ngIf="hasError != ''">
+      <div class="col-xs-6">
+      <table class="table table-hover">
+        <tr class="danger"><td>Sorry, looks like there was a problem fetching data for that character.</td></tr>
+      </table>
+      </div>
+    </div>
+    <div class="row" *ngIf="films.length > 0">
+      <div class="col-xs-6">
+        <table class="table table-hover">
+          <thead>
+          <tr>
+            <th>Title</th>
+            <th>Release Date</th>
+          </tr>
+          </thead>
+          <tr *ngFor="let f of films" class="active">
+            <td>{{f.title}}</td>
+            <td>{{f.release_date | date:'fullDate'}}</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+
